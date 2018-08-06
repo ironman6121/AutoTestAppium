@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('src/main/java/libs/java-client-6.1.0.jar')
+    implementation files('src/main/java/libs/selenium-server-standalone-3.13.0.jar')
+    implementation 'junit:junit:4.12'
+    implementation files('src/main/java/libs/jutf7-1.0.0.jar')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

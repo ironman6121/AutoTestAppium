@@ -21,6 +21,8 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class AndroidContactsTest {
@@ -41,7 +43,7 @@ public class AndroidContactsTest {
         //app的目录
         File appDir = new File(classpathRoot, "/src/main/java/apps/");
         //app的名字，对应你apps目录下的文件
-        File app = new File(appDir, "wotongzhishang_test.apk");
+        File app = new File(appDir, "app-release.apk");
         //创建Capabilities
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //设置要调试的模拟器的名字
@@ -51,9 +53,9 @@ public class AndroidContactsTest {
         //设置app的路径
         capabilities.setCapability("app", app.getAbsolutePath());
         //设置app的包名
-        capabilities.setCapability("appPackage", "com.culture.culturalexpo");
+        capabilities.setCapability("appPackage", "com.ironman.autotestappium");
         //设置app的启动activity
-        capabilities.setCapability("appActivity", ".UI.Public.WelcomeActivity");
+        capabilities.setCapability("appActivity", ".MainActivity");
         //设置app可以输入中文字符
         capabilities.setCapability("unicodeKeyboard", "True");
         capabilities.setCapability("resetKeyboard", "True");
@@ -69,58 +71,32 @@ public class AndroidContactsTest {
     }
 
 
-    /**
-     * 要执行的的测试方法
-     */
-//    @Test
-//    public void addContact() {
-//        //利用Xpath的方法寻找text值为Add Contact的控件
-//        WebElement el = driver.findElement(By.xpath(".//*[@text='Add Contact']"));
-//        //点击这个控件
-//        el.click();
-//        //利用类名获取界面上所有的EditText
-//        List<AndroidElement> textFieldsList = driver.findElementsByClassName("android.widget.EditText");
-//        //第一个EditText输入内容Some Name
-//        textFieldsList.get(0).sendKeys("Some Name");
-//        //第三个EditText输入内容Some Name
-//        textFieldsList.get(2).sendKeys("Some@example.com");
-//        //在坐(100,500)滑动到(100,100) 时间为2毫秒
-////        driver.swipe(100, 500, 100, 100, 2);
-//        //用xpath的方式寻找到text值为Save的控件，然后点击
-//        driver.findElementByXPath(".//*[@text='Save']").click();
-//    }
     @Test
-    public void addContact() {
-        //利用Xpath的方法寻找text值为Add Contact的控件
-//        WebElement el = driver.findElement(By.xpath(".//*[@text='Add Contact']"));
-//        //点击这个控件
-//        el.click();
-//        //利用类名获取界面上所有的EditText
-//        List<AndroidElement> textFieldsList = driver.findElementsByClassName("android.widget.EditText");
-//        //第一个EditText输入内容Some Name
-//        textFieldsList.get(0).sendKeys("Some Name");
-//        //第三个EditText输入内容Some Name
-//        textFieldsList.get(2).sendKeys("Some@example.com");
-//        //在坐(100,500)滑动到(100,100) 时间为2毫秒
-////        driver.swipe(100, 500, 100, 100, 2);
-//        //用xpath的方式寻找到text值为Save的控件，然后点击
-//        driver.findElementByXPath(".//*[@text='Save']").click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        driver.findElementsById("com.culture.culturalexpo:id/tvLeft").get(0).click();
-        driver.findElementsById("com.culture.culturalexpo:id/rbMarket").get(0).click();
-        driver.findElementsById("com.culture.culturalexpo:id/tvSearch").get(0).click();
-        driver.findElementsById("com.culture.culturalexpo:id/edSearch").get(0).sendKeys("zuny");
-        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-//        driver.findElementsById('R.id.tvSearch').click();
-//        Espresso.onView(withId(R.id.tvSearch)).perform(click());
-//        Espresso.onView(withText("钥匙扣")).perform(click());
-//        Espresso.onView(withText("鲁迅经典")).perform(click());
-//        Espresso.onView(withId(R.id.imgHideShare)).perform(click());
-//        Espresso.onView(withText("微信好友")).perform(click());
+    public void case1() {
+        driver.findElementsById("com.ironman.autotestappium:id/tvCase1").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb1").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb2").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb3").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb4").get(0).click();
+        String favoriteFood = driver.findElementsById("com.ironman.autotestappium:id/tvFavoriteFood").get(0).getText();
+        assertEquals("Fried chicken", favoriteFood);
+    }
+
+    @Test
+    public void case2() {
+        driver.findElementsById("com.ironman.autotestappium:id/tvCase1").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb1").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb2").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb3").get(0).click();
+        driver.findElementsById("com.ironman.autotestappium:id/rb4").get(0).click();
+        String favoriteFood = driver.findElementsById("com.ironman.autotestappium:id/tvFavoriteFood").get(0).getText();
+        assertEquals("beer", favoriteFood);
+    }
+
+    @Test
+    public void case3() {
+        driver.findElementsById("com.ironman.autotestappium:id/tvJump").get(0).click();
+        driver.findElementById("com.tencent.mm:id/i0").sendKeys("123456");
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 }

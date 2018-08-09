@@ -29,7 +29,6 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-contrib:' +espressoVersion) {
         transitive false
     }
-    androidTestImplementation 'com.android.support.test.espresso:espresso-web:' + espressoVersion
     androidTestImplementation 'com.android.support:support-annotations:' + VERSION
     androidTestImplementation 'com.android.support:recyclerview-v7:' + VERSION
 }

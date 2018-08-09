@@ -41,15 +41,15 @@ public class AndroidContactsTest {
 
         File classpathRoot = new File(System.getProperty("user.dir"));
         //app的目录
-        File appDir = new File(classpathRoot, "/src/main/java/apps/");
+        File appDir = new File(classpathRoot, "/src/main/java/apps/release");
         //app的名字，对应你apps目录下的文件
         File app = new File(appDir, "app-release.apk");
         //创建Capabilities
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //设置要调试的模拟器的名字
-        capabilities.setCapability("deviceName", "Redmi 4A");
+        capabilities.setCapability("deviceName", "Android Emulator");
         //设置模拟器的系统版本
-        capabilities.setCapability("platformVersion", "7.1.2");
+        capabilities.setCapability("platformVersion", "4.4.2");
         //设置app的路径
         capabilities.setCapability("app", app.getAbsolutePath());
         //设置app的包名
@@ -73,17 +73,20 @@ public class AndroidContactsTest {
 
     @Test
     public void case1() {
+        //进入case1(单选题，我最喜欢吃的食物是什么？，正确答案是：beer 啤酒) 进来先选择选项一、二、三。
+        //最后断言 看最终选择的是不是正确答案 beer 啤酒
         driver.findElementsById("com.ironman.autotestappium:id/tvCase1").get(0).click();
         driver.findElementsById("com.ironman.autotestappium:id/rb1").get(0).click();
         driver.findElementsById("com.ironman.autotestappium:id/rb2").get(0).click();
         driver.findElementsById("com.ironman.autotestappium:id/rb3").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb4").get(0).click();
         String favoriteFood = driver.findElementsById("com.ironman.autotestappium:id/tvFavoriteFood").get(0).getText();
-        assertEquals("Fried chicken", favoriteFood);
+        assertEquals("beer", favoriteFood);
     }
 
     @Test
     public void case2() {
+        //进入case1(单选题，我最喜欢吃的食物是什么？，正确答案是：beer 啤酒) 进来先选择选项一、二、三、四。
+        //最后断言 看最终选择的是不是正确答案 beer 啤酒
         driver.findElementsById("com.ironman.autotestappium:id/tvCase1").get(0).click();
         driver.findElementsById("com.ironman.autotestappium:id/rb1").get(0).click();
         driver.findElementsById("com.ironman.autotestappium:id/rb2").get(0).click();
@@ -95,8 +98,12 @@ public class AndroidContactsTest {
 
     @Test
     public void case3() {
-        driver.findElementsById("com.ironman.autotestappium:id/tvJump").get(0).click();
-        driver.findElementById("com.tencent.mm:id/i0").sendKeys("123456");
+        driver.findElementById("com.ironman.autotestappium:id/tvJump").click();
+        driver.findElementByXPath("//*[@text='登录']").click();
+        driver.findElementById("com.tencent.mm:id/hz").sendKeys("17600000000");
+        driver.findElementById("com.tencent.mm:id/alr").click();
+        driver.findElementById("com.tencent.mm:id/hz").sendKeys("123456");
+        driver.findElementById("com.tencent.mm:id/alr").click();
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 }

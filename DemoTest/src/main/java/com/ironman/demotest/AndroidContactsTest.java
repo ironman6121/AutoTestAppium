@@ -3,32 +3,21 @@ package com.ironman.demotest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 
-import javax.xml.bind.Element;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class AndroidContactsTest {
 
     //Driver
-//    private AppiumDriver<AndroidElement> driver;
     private AndroidDriver<AndroidElement> driver;
 
     /**
@@ -47,9 +36,9 @@ public class AndroidContactsTest {
         //创建Capabilities
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //设置要调试的模拟器的名字
-        capabilities.setCapability("deviceName", "Android Emulator");
+        capabilities.setCapability("deviceName", "Redmi 4X");
         //设置模拟器的系统版本
-        capabilities.setCapability("platformVersion", "4.4.2");
+        capabilities.setCapability("platformVersion", "7.1.2");
         //设置app的路径
         capabilities.setCapability("app", app.getAbsolutePath());
         //设置app的包名
@@ -75,11 +64,11 @@ public class AndroidContactsTest {
     public void case1() {
         //进入case1(单选题，我最喜欢吃的食物是什么？，正确答案是：beer 啤酒) 进来先选择选项一、二、三。
         //最后断言 看最终选择的是不是正确答案 beer 啤酒
-        driver.findElementsById("com.ironman.autotestappium:id/tvCase1").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb1").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb2").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb3").get(0).click();
-        String favoriteFood = driver.findElementsById("com.ironman.autotestappium:id/tvFavoriteFood").get(0).getText();
+        driver.findElementById("com.ironman.autotestappium:id/tvCase1").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb1").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb2").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb3").click();
+        String favoriteFood = driver.findElementById("com.ironman.autotestappium:id/tvFavoriteFood").getText();
         assertEquals("beer", favoriteFood);
     }
 
@@ -87,12 +76,12 @@ public class AndroidContactsTest {
     public void case2() {
         //进入case1(单选题，我最喜欢吃的食物是什么？，正确答案是：beer 啤酒) 进来先选择选项一、二、三、四。
         //最后断言 看最终选择的是不是正确答案 beer 啤酒
-        driver.findElementsById("com.ironman.autotestappium:id/tvCase1").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb1").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb2").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb3").get(0).click();
-        driver.findElementsById("com.ironman.autotestappium:id/rb4").get(0).click();
-        String favoriteFood = driver.findElementsById("com.ironman.autotestappium:id/tvFavoriteFood").get(0).getText();
+        driver.findElementById("com.ironman.autotestappium:id/tvCase1").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb1").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb2").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb3").click();
+        driver.findElementById("com.ironman.autotestappium:id/rb4").click();
+        String favoriteFood = driver.findElementById("com.ironman.autotestappium:id/tvFavoriteFood").getText();
         assertEquals("beer", favoriteFood);
     }
 
